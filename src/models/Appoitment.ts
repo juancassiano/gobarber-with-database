@@ -4,15 +4,20 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import User from './User';
 
 @Entity('appoitments')
 class Appoitment {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  provider_id: string;
 
-  @Column()
-  provider: string;
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'provider_id' })
+  provider: User;
 
   @Column('timestamp with time zone')
   date: Date;
