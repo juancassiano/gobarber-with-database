@@ -38,7 +38,7 @@ export default class AlterProviderFieldToProviderId1588618246381
     await queryRunner.dropColumn('appoitments', 'provider_id');
 
     await queryRunner.addColumn(
-      'appoiments',
+      'appoitments',
       new TableColumn({
         name: 'provider',
         type: 'varchar',

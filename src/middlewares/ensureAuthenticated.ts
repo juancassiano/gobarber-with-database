@@ -33,7 +33,7 @@ export default function ensureAuthenticated(
     };
 
     return next();
-  } catch {
+  } catch (err) {
     throw new Error('invalid JWT token');
   }
 }

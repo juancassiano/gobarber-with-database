@@ -13,6 +13,9 @@ import User from './User';
 @Entity('appoitments')
 class Appoitment {
   @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
   provider_id: string;
 
   @ManyToOne(() => User)
