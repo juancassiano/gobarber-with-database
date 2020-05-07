@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 
 import Appoitment from '../models/Appoitment';
 import AppoitmentsRepository from '../repositories/AppoitmentsRepository';
+import AppError from '../errors/AppError';
 
 interface Request {
   provider_id: string;
@@ -20,7 +21,7 @@ class CreateAppoitmentService {
     );
 
     if (findAppoitmentInSameDate) {
-      throw Error('This appoitment is already booked');
+      throw new AppError('This appoitment is already booked');
     }
 
     const appoitment = appoitmentsRepository.create({
