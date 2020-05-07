@@ -15,20 +15,18 @@ app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 
 // Middleware p/ Tratativa de erro
-app.use(
-  (err: Error, request: Request, response: Response, _: NextFunction) => {
-    if (err instanceof AppError) {
-      return response.status(err.statusCode).json({
-        status: 'error',
-        message: err.message,
-      });
-    }
-
-    return response.status(500).json({
+app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
+  if (err instanceof AppError) {
+    return response.status(err.statusCode).json({
       status: 'error',
-      message: 'Internal server error',
+      message: err.message,
     });
   }
-);
+
+  return response.status(500).json({
+    status: 'error',
+    message: 'Internal server error',
+  });
+});
 
 app.listen(3333);
